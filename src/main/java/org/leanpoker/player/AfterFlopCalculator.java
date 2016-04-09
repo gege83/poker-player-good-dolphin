@@ -28,7 +28,7 @@ public class AfterFlopCalculator {
 		}
 		else if (getPair().size() != 0
 				|| getTwoPair().size() != 0) {
-			guess = gameState.getMinimumRaise()*3;
+			guess = gameState.getMinimumBet();
 		}
 		return guess;
 	}
@@ -163,5 +163,4 @@ public class AfterFlopCalculator {
 		}
 		return result;
 	}
-
 }
