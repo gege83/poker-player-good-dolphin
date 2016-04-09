@@ -41,14 +41,14 @@ public class AfterFlopCalculator {
 	private List<List<Card>> getPairs() {
 		Map<Integer, List<Card>> cardPairMap = new HashMap<>();
 		for(int i=2;i<15;i++) {
-			cardPairMap.put(i, Collections.<Card>emptyList());
+			cardPairMap.put(i, new ArrayList<Card>());
 		}
 		for(int i=0;i<cards.size();i++) {
 			List<Card> list=cardPairMap.get(cards.get(i).getValue());
 			list.add(cards.get(i));
 			cardPairMap.put(cards.get(i).getValue(), list);
 		}
-		List<List<Card>> ret = Collections.emptyList();
+		List<List<Card>> ret = new ArrayList<>();
 		for(Integer s : cardPairMap.keySet()) {
 			if(cardPairMap.get(s).size()==2) {
 				ret.add(cardPairMap.get(s));
