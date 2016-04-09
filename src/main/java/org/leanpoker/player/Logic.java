@@ -2,7 +2,7 @@ package org.leanpoker.player;
 
 public class Logic {
 	public boolean isPreflop(GameState gameState) {
-		return gameState.getCommunity_cards().size() > 0;
+		return gameState.getCommunity_cards().isEmpty();
 	}
 
 	public int preFlop(GameState gameState) {
