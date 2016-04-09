@@ -28,7 +28,7 @@ public class AfterFlopCalculator {
 		int guess = 0;
 		if (getThreeOfAKind().size() != 0
 				|| getPoker().size() != 0) {
-			guess = 1000;
+			guess = 10000;
 		}
 		else if (getPair().size() != 0
 				|| getTwoPair().size() != 0) {
@@ -60,6 +60,19 @@ public class AfterFlopCalculator {
 			cardRankFrequenciesMap.put(cards.get(i).getValue(), list);
 		}
 		return cardRankFrequenciesMap;
+	}
+	
+	private Map<String, List<Card>> getSuitFrequencies() {
+		Map<String, List<Card>> cardSuitFrequenciesMap = new HashMap<>();
+		for (CardSuits cs : CardSuits.values()) {
+			cardSuitFrequenciesMap.put(cs.getName(), new ArrayList<Card>());
+		}
+		for (int i = 0; i < cards.size(); i++) {
+			List<Card> list = cardSuitFrequenciesMap.get(cards.get(i).getValue());
+			list.add(cards.get(i));
+			cardSuitFrequenciesMap.put(cards.get(i).getSuit(), list);
+		}
+		return cardSuitFrequenciesMap;
 	}
 
 	public List<Card> getPair() {
