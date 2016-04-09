@@ -14,14 +14,14 @@ public class PreflopLogic {
 			String currentSuit = card.getSuit();
 			if (current == points) {
 				return 1000;
-			} else if (isNeighbours(points, current) || sameSuit(currentSuit, previousSuit)) {
-				return gameState.getCurrent_buy_in();
+//			} else if ((isNeighbours(points, current) || sameSuit(currentSuit, previousSuit)) && (points + current >= 20)) {
+//				return gameState.getCurrent_buy_in();
 			} else {
 				points += current;
 			}
 			previousSuit = currentSuit;
 		}
-		return points > 20 ? 1000 : 0;
+		return points >= 20 ? gameState.getCurrent_buy_in() : 0;
 	}
 
 	private boolean sameSuit(String currentSuit, String previousSuit) {
