@@ -22,7 +22,7 @@ public class AfterFlopCalculator {
 
 	public int getGuess() {
 		int guess = 0;
-		if (getPairs().size() != 0
+		if (getPair().size() != 0
 				|| getTwoPair().size() != 0
 				|| getThreeOfAKind().size() != 0
 				|| getPoker().size() != 0) {
@@ -41,26 +41,6 @@ public class AfterFlopCalculator {
 			// cardValues.add(CardValue.valueOf("C"+cards.get(i).getRank()).getAmount());
 		}
 		return card;// Collections.max(cardValues);
-	}
-
-	private List<List<Card>> getPairs() {
-		Map<Integer, List<Card>> cardPairMap = new HashMap<>();
-		for (int i = 2; i < 15; i++) {
-			cardPairMap.put(i, new ArrayList<Card>());
-		}
-		for (int i = 0; i < cards.size(); i++) {
-			List<Card> list = cardPairMap.get(cards.get(i).getValue());
-			list.add(cards.get(i));
-			cardPairMap.put(cards.get(i).getValue(), list);
-		}
-		List<List<Card>> ret = new ArrayList<>();
-		for (Integer s : cardPairMap.keySet()) {
-			if (cardPairMap.get(s).size() == 2) {
-				ret.add(cardPairMap.get(s));
-			}
-		}
-		return ret;
-
 	}
 
 	private Map<Integer, List<Card>> getRankFrequencies() {
@@ -91,7 +71,23 @@ public class AfterFlopCalculator {
 				result = new ArrayList<>();
 			}
 		}
+				
+		if (!hasOwnCard(result)) {
+			result.clear();
+		}
+		
 		return result;
+	}
+
+	private boolean hasOwnCard(List<Card> result) {
+		boolean hasOwnCard = false;
+		for (Card card : result) {
+			if (hole.contains(card)) {
+				hasOwnCard = true;
+				break;
+			}
+		}
+		return hasOwnCard;
 	}
 	
 	public List<Card> getThreeOfAKind() {
@@ -104,6 +100,11 @@ public class AfterFlopCalculator {
 				result.addAll(cardList);
 			}
 		}
+		
+		if (!hasOwnCard(result)) {
+			result.clear();
+		}
+
 		return result;
 	}
 
@@ -117,6 +118,11 @@ public class AfterFlopCalculator {
 				result.addAll(cardList);
 			}
 		}
+		
+		if (!hasOwnCard(result)) {
+			result.clear();
+		}
+
 		return result;
 	}
 	
@@ -133,6 +139,10 @@ public class AfterFlopCalculator {
 			}
 		}
 		
+		if (!hasOwnCard(result)) {
+			result.clear();
+		}
+
 		if (cnt != 2) {
 			result.clear();
 		}
