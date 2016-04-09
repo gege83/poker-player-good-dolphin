@@ -27,9 +27,9 @@ public class PreflopLogic {
 			previousSuit = currentSuit;
 		}
 		if (current_buy_in < gameState.getSmallBlind() * 3 && stay(player, currentSuit, previousSuit)) {
-			return current_buy_in;
+			return minbet;
 		}
-		return points >= 20 ? current_buy_in : 0;
+		return points >= 20 ? raise : 0;
 	}
 
 	private boolean stay(PlayerObj player, String current, String previous) {
