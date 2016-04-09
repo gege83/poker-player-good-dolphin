@@ -9,6 +9,7 @@ public class PreflopLogic {
 		int points = 0;
 		int current = 0;
 		int current_buy_in = gameState.getCurrent_buy_in();
+		int minbet = gameState.getMinimumBet();
 		int raise = current_buy_in + gameState.getMinimumRaise();
 		for (Card card : holeCards) {
 			current = card.getValue();

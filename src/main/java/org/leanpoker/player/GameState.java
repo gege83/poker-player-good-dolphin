@@ -55,6 +55,24 @@ public class GameState {
 		return current_buy_in;
 	}
 
+	public int getSmallBlind() {
+		return small_blind;
+	}
+
+	public int getMinimumRaise() {
+		return minimum_raise;
+	}
+
+	public PlayerObj getCurretPlayer() {
+		return players.get(in_action);
+	}
+
+	public int getMinimumBet() {
+		PlayerObj curretPlayer = getCurretPlayer();
+		System.out.println(curretPlayer.name);
+		return current_buy_in - curretPlayer.getBet() + minimum_raise + 1;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -63,7 +81,9 @@ public class GameState {
 		result = prime * result + current_buy_in;
 		result = prime * result + dealer;
 		result = prime * result + in_action;
+		result = prime * result + minimum_raise;
 		result = prime * result + (players == null ? 0 : players.hashCode());
+		result = prime * result + small_blind;
 		return result;
 	}
 
@@ -95,11 +115,17 @@ public class GameState {
 		if (in_action != other.in_action) {
 			return false;
 		}
+		if (minimum_raise != other.minimum_raise) {
+			return false;
+		}
 		if (players == null) {
 			if (other.players != null) {
 				return false;
 			}
 		} else if (!players.equals(other.players)) {
+			return false;
+		}
+		if (small_blind != other.small_blind) {
 			return false;
 		}
 		return true;
@@ -108,15 +134,8 @@ public class GameState {
 	@Override
 	public String toString() {
 		return "GameState [dealer=" + dealer + ", players=" + players + ", community_cards=" + community_cards
-				+ ", in_action=" + in_action + ", current_buy_in=" + current_buy_in + "]";
-	}
-
-	public int getSmallBlind() {
-		return small_blind;
-	}
-
-	public int getMinimumRaise() {
-		return minimum_raise;
+				+ ", in_action=" + in_action + ", current_buy_in=" + current_buy_in + ", small_blind=" + small_blind
+				+ ", minimum_raise=" + minimum_raise + "]";
 	}
 
 }
