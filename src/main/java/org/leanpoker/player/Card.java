@@ -73,26 +73,4 @@ public class Card {
 		return "Card [rank=" + rank + ", suit=" + suit + "]";
 	}
 
-	public int getRankInt() {
-		int current;
-		switch (rank) {
-		case "J":
-			current = 11;
-			break;
-		case "Q":
-			current = 12;
-			break;
-		case "K":
-			current = 13;
-			break;
-		case "A":
-			current = 14;
-			break;
-		default:
-			current = Integer.parseInt(rank);
-			break;
-		}
-		return current;
-	}
-
 }

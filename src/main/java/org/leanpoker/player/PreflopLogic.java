@@ -10,7 +10,7 @@ public class PreflopLogic {
 		int current = 0;
 		String previousSuit = "";
 		for (Card card : holeCards) {
-			current = card.getRankInt();
+			current = card.getValue();
 			String currentSuit = card.getSuit();
 			if (current == points) {
 				return 1000;
