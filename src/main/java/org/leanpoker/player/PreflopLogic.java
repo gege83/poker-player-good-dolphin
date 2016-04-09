@@ -9,7 +9,6 @@ public class PreflopLogic {
 		int points = 0;
 		int current = 0;
 		int current_buy_in = gameState.getCurrent_buy_in();
-		int betCall = gameState.getCurrent_buy_in() - player.getBet();
 		int raise = current_buy_in + gameState.getMinimumRaise();
 		for (Card card : holeCards) {
 			current = card.getValue();
@@ -25,7 +24,7 @@ public class PreflopLogic {
 		if (current_buy_in < gameState.getSmallBlind() * 3 && player.getBet() > 0) {
 			return current_buy_in;
 		}
-		return points >= 20 ? betCall : 0;
+		return points >= 20 ? current_buy_in : 0;
 	}
 
 }
