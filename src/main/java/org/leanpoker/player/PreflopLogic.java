@@ -7,24 +7,30 @@ public class PreflopLogic {
 		PlayerObj player = gameState.getPlayers().get(gameState.getIn_action());
 		List<Card> holeCards = player.getHole_cards();
 		int points = 0;
+		int current = 0;
 		for (Card card : holeCards) {
 			String rank = card.getRank();
 			switch (rank) {
 			case "J":
-				points += 11;
+				current = 11;
 				break;
 			case "Q":
-				points += 12;
+				current = 12;
 				break;
 			case "K":
-				points += 13;
+				current = 13;
 				break;
 			case "A":
-				points += 14;
+				current = 14;
 				break;
 			default:
-				points += Integer.parseInt(rank);
+				current = Integer.parseInt(rank);
 				break;
+			}
+			if (current == points) {
+				return 1000;
+			} else {
+				points += current;
 			}
 		}
 		return points > 14 ? 1000 : 0;
