@@ -8,28 +8,24 @@ public class PreflopLogic {
 		List<Card> holeCards = player.getHole_cards();
 		int points = 0;
 		int current = 0;
-		String previousSuit = "";
+		int betCall = gameState.getCurrent_buy_in() - player.getBet();
+		int raise = betCall + gameState.getMinimumRaise();
 		for (Card card : holeCards) {
 			current = card.getValue();
-			String currentSuit = card.getSuit();
-			if (current > 12) {
-				return gameState.getCurrent_buy_in();
+			if (current > 9) {
+				return betCall;
 			}
 			if (current == points) {
-				return 1000;
+				return raise;
 			} else {
 				points += current;
 			}
-			previousSuit = currentSuit;
 		}
-		return points >= 20 ? gameState.getCurrent_buy_in() : 0;
+		int current_buy_in = gameState.getCurrent_buy_in();
+		if (current_buy_in < gameState.getSmallBlind() * 3 && player.getBet() > 0) {
+			return betCall;
+		}
+		return points >= 20 ? betCall : 0;
 	}
 
-	private boolean sameSuit(String currentSuit, String previousSuit) {
-		return currentSuit.equals(previousSuit);
-	}
-
-	private boolean isNeighbours(int points, int current) {
-		return Math.abs(current - points) <= 1;
-	}
 }

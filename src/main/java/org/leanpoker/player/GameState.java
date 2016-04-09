@@ -8,6 +8,8 @@ public class GameState {
 	List<Card> community_cards;
 	private final int in_action;
 	private final int current_buy_in;
+	private final int small_blind;
+	private final int minimum_raise;
 
 	public int getDealer() {
 		return dealer;
@@ -37,14 +39,16 @@ public class GameState {
 		return in_action;
 	}
 
-	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards, int in_action,
-			int current_buy_in) {
+	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards, int in_action, int current_buy_in,
+			int small_blind, int minimum_raise) {
 		super();
 		this.dealer = dealer;
 		this.players = players;
 		this.community_cards = community_cards;
 		this.in_action = in_action;
 		this.current_buy_in = current_buy_in;
+		this.small_blind = small_blind;
+		this.minimum_raise = minimum_raise;
 	}
 
 	public int getCurrent_buy_in() {
@@ -105,6 +109,14 @@ public class GameState {
 	public String toString() {
 		return "GameState [dealer=" + dealer + ", players=" + players + ", community_cards=" + community_cards
 				+ ", in_action=" + in_action + ", current_buy_in=" + current_buy_in + "]";
+	}
+
+	public int getSmallBlind() {
+		return small_blind;
+	}
+
+	public int getMinimumRaise() {
+		return minimum_raise;
 	}
 
 }

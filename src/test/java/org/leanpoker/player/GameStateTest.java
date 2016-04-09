@@ -18,7 +18,7 @@ public class GameStateTest {
 
 		Card card = new Card("A", "hearts");
 		PlayerObj playerObj = new PlayerObj(0, "valalki", "folded", 532, 43, Arrays.asList(card));
-		GameState expected = new GameState(2, Arrays.asList(playerObj), Arrays.<Card>asList(), 2, 234);
+		GameState expected = new GameState(2, Arrays.asList(playerObj), Arrays.<Card>asList(), 2, 234, 0, 0);
 
 		Gson gson = new GsonBuilder().create();
 		GameState acutal = gson.fromJson(json, GameState.class);
