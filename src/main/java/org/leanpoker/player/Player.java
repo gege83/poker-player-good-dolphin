@@ -19,6 +19,7 @@ public class Player {
 				return logic.postFlop(gameState);
 			}
 		} catch (Throwable e) {
+			e.printStackTrace();
 			return 1000;
 		}
 	}
