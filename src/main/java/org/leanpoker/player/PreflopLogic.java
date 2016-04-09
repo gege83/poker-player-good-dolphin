@@ -33,6 +33,6 @@ public class PreflopLogic {
 				points += current;
 			}
 		}
-		return points > 14 ? 1000 : 0;
+		return points > 20 ? 1000 : 0;
 	}
 }

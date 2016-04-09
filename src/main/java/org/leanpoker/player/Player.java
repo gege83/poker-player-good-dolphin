@@ -10,9 +10,14 @@ public class Player {
 
 	public static int betRequest(JsonElement request) {
 		try {
+			Logic logic = new Logic();
 			Gson gson = new GsonBuilder().create();
 			GameState gameState = gson.fromJson(request, GameState.class);
-			return new Logic().preFlop(gameState);
+			if (logic.isPreflop(gameState)) {
+				return logic.preFlop(gameState);
+			} else {
+				return logic.postFlop(gameState);
+			}
 		} catch (Throwable e) {
 			return 1000;
 		}
