@@ -24,7 +24,13 @@ public class AfterFlopCalculator {
 		int guess = 0;
 		if (getThreeOfAKind().size() != 0
 				|| getPoker().size() != 0) {
-			guess = 1000;
+			guess = 10000;
+		}
+		else if (getFiveSameSuit().size() != 0) {
+			guess = 10000;
+		}
+		else if (getFourSameSuit().size() != 0) {
+			guess = gameState.getMinimumBet();
 		}
 		else if (getPair().size() != 0
 				|| getTwoPair().size() != 0) {
@@ -161,6 +167,42 @@ public class AfterFlopCalculator {
 		if (cnt != 2) {
 			result.clear();
 		}
+		return result;
+	}
+	
+	public List<Card> getFourSameSuit() {
+		Map<String, List<Card>> cardSutFrequenciesMap = getSuitFrequencies();
+
+		List<Card> result = new ArrayList<>();
+		for (String s : cardSutFrequenciesMap.keySet()) {
+			List<Card> cardList = cardSutFrequenciesMap.get(s);
+			if (cardList.size() == 4) {
+				result.addAll(cardList);
+			}
+		}
+		
+		if (!hasOwnCard(result)) {
+			result.clear();
+		}
+
+		return result;
+	}
+	
+	public List<Card> getFiveSameSuit() {
+		Map<String, List<Card>> cardSutFrequenciesMap = getSuitFrequencies();
+
+		List<Card> result = new ArrayList<>();
+		for (String s : cardSutFrequenciesMap.keySet()) {
+			List<Card> cardList = cardSutFrequenciesMap.get(s);
+			if (cardList.size() == 5) {
+				result.addAll(cardList);
+			}
+		}
+		
+		if (!hasOwnCard(result)) {
+			result.clear();
+		}
+
 		return result;
 	}
 }
