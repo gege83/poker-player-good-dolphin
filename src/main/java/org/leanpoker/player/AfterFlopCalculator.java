@@ -19,14 +19,20 @@ public class AfterFlopCalculator {
 		cards.addAll(hole);
 		cards.addAll(comm);
 	}
+	
+	private int getCallAmount() {
+		return gameState.getCurrent_buy_in();
+	}
 
 	public int getGuess() {
 		int guess = 0;
-		if (getPair().size() != 0
-				|| getTwoPair().size() != 0
-				|| getThreeOfAKind().size() != 0
+		if (getThreeOfAKind().size() != 0
 				|| getPoker().size() != 0) {
 			guess = 1000;
+		}
+		else if (getPair().size() != 0
+				|| getTwoPair().size() != 0) {
+			guess = getCallAmount() + gameState.getMinimumRaise();
 		}
 		return guess;
 	}
