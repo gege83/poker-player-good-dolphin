@@ -22,32 +22,6 @@ public class Card {
 		this.suit = suit;
 	}
 
-	public int getRank() {
-		int current = 0;
-		switch (rank) {
-		case "J":
-			current = 11;
-			break;
-		case "Q":
-			current = 12;
-			break;
-		case "K":
-			current = 13;
-			break;
-		case "A":
-			current = 14;
-			break;
-		default:
-			current = Integer.parseInt(rank);
-			break;
-		}
-		return current;
-	}
-
-	public void setRank(String rank) {
-		this.rank = rank;
-	}
-
 	public String getSuit() {
 		return suit;
 	}
