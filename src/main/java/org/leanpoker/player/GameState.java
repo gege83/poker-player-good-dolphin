@@ -68,9 +68,15 @@ public class GameState {
 	}
 
 	public int getMinimumBet() {
+		int call = getCall();
+		return call + minimum_raise;
+	}
+
+	private int getCall() {
 		PlayerObj curretPlayer = getCurretPlayer();
 		System.out.println(curretPlayer.name);
-		return current_buy_in - curretPlayer.getBet() + minimum_raise + 1;
+		int call = current_buy_in - curretPlayer.getBet() + 1;
+		return call;
 	}
 
 	@Override
