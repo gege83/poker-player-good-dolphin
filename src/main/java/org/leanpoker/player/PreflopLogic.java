@@ -12,10 +12,11 @@ public class PreflopLogic {
 		for (Card card : holeCards) {
 			current = card.getValue();
 			String currentSuit = card.getSuit();
+			if (current > 12) {
+				return gameState.getCurrent_buy_in();
+			}
 			if (current == points) {
 				return 1000;
-//			} else if ((isNeighbours(points, current) || sameSuit(currentSuit, previousSuit)) && (points + current >= 20)) {
-//				return gameState.getCurrent_buy_in();
 			} else {
 				points += current;
 			}
