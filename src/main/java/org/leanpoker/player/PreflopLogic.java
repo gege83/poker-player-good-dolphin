@@ -33,7 +33,7 @@ public class PreflopLogic {
 	}
 
 	private boolean stay(PlayerObj player, String current, String previous) {
-		return player.getBet() > 0;
+		return player.getBet() > 0 || current.equals(previous);
 	}
 
 }
