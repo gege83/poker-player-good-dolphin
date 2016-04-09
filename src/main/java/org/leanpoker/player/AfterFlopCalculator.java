@@ -19,20 +19,16 @@ public class AfterFlopCalculator {
 		cards.addAll(hole);
 		cards.addAll(comm);
 	}
-	
-	private int getCallAmount() {
-		return gameState.getCurrent_buy_in();
-	}
 
 	public int getGuess() {
 		int guess = 0;
 		if (getThreeOfAKind().size() != 0
 				|| getPoker().size() != 0) {
-			guess = 10000;
+			guess = 1000;
 		}
 		else if (getPair().size() != 0
 				|| getTwoPair().size() != 0) {
-			guess = getCallAmount() + gameState.getMinimumRaise();
+			guess = gameState.getMinimumRaise()*3;
 		}
 		return guess;
 	}
@@ -68,7 +64,7 @@ public class AfterFlopCalculator {
 			cardSuitFrequenciesMap.put(cs.getName(), new ArrayList<Card>());
 		}
 		for (int i = 0; i < cards.size(); i++) {
-			List<Card> list = cardSuitFrequenciesMap.get(cards.get(i).getValue());
+			List<Card> list = cardSuitFrequenciesMap.get(cards.get(i).getSuit());
 			list.add(cards.get(i));
 			cardSuitFrequenciesMap.put(cards.get(i).getSuit(), list);
 		}
@@ -167,4 +163,5 @@ public class AfterFlopCalculator {
 		}
 		return result;
 	}
+
 }
