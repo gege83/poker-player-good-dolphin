@@ -6,6 +6,21 @@ public class GameState {
 	int dealer;
 	List<PlayerObj> players;
 	List<Card> community_cards;
+	private final int in_action;
+
+	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards, int in_action) {
+		super();
+		this.dealer = dealer;
+		this.players = players;
+		this.community_cards = community_cards;
+		this.in_action = in_action;
+	}
+
+	@Override
+	public String toString() {
+		return "GameState [dealer=" + dealer + ", players=" + players + ", community_cards=" + community_cards
+				+ ", in_action=" + in_action + "]";
+	}
 
 	@Override
 	public int hashCode() {
@@ -13,6 +28,7 @@ public class GameState {
 		int result = 1;
 		result = prime * result + (community_cards == null ? 0 : community_cards.hashCode());
 		result = prime * result + dealer;
+		result = prime * result + in_action;
 		result = prime * result + (players == null ? 0 : players.hashCode());
 		return result;
 	}
@@ -39,6 +55,9 @@ public class GameState {
 		if (dealer != other.dealer) {
 			return false;
 		}
+		if (in_action != other.in_action) {
+			return false;
+		}
 		if (players == null) {
 			if (other.players != null) {
 				return false;
@@ -47,18 +66,6 @@ public class GameState {
 			return false;
 		}
 		return true;
-	}
-
-	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards) {
-		super();
-		this.dealer = dealer;
-		this.players = players;
-		this.community_cards = community_cards;
-	}
-
-	@Override
-	public String toString() {
-		return "GameState [dealer=" + dealer + ", players=" + players + ", community_cards=" + community_cards + "]";
 	}
 
 }
