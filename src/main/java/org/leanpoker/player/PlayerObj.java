@@ -11,6 +11,54 @@ public class PlayerObj {
 
 	List<Card> hole_cards;
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public State getStatus() {
+		return status;
+	}
+
+	public void setStatus(State status) {
+		this.status = status;
+	}
+
+	public int getStack() {
+		return stack;
+	}
+
+	public void setStack(int stack) {
+		this.stack = stack;
+	}
+
+	public int getBet() {
+		return bet;
+	}
+
+	public void setBet(int bet) {
+		this.bet = bet;
+	}
+
+	public List<Card> getHole_cards() {
+		return hole_cards;
+	}
+
+	public void setHole_cards(List<Card> hole_cards) {
+		this.hole_cards = hole_cards;
+	}
+
 	@Override
 	public String toString() {
 		return "PlayerObj [id=" + id + ", name=" + name + ", status=" + status + ", stack=" + stack + ", bet=" + bet
