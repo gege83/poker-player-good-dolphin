@@ -1,15 +1,11 @@
 package org.leanpoker.player;
 
 import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 import org.junit.Test;
 
@@ -29,9 +25,14 @@ public class PlayerTest {
     
     @Test
     public void testSmoke() throws IOException, URISyntaxException {
-    	byte[] bytes = Files.readAllBytes(Paths.get(getClass().getResource("test.json").toURI()));
-    	String json = new String(bytes);
+    	String json = getTestJson();
     	JsonElement request = new JsonParser().parse(json);
     	int result = Player.betRequest(request);
+    }
+    
+    private String getTestJson() throws IOException, URISyntaxException {
+    	byte[] bytes = Files.readAllBytes(Paths.get(getClass().getResource("test.json").toURI()));
+    	String json = new String(bytes);
+    	return json;
     }
 }
