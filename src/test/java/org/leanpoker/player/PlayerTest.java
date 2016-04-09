@@ -19,20 +19,20 @@ public class PlayerTest {
 
 		JsonElement jsonElement = new JsonParser().parse("{\"key1\": \"value1\", \"key2\": \"value2\"}");
 
-		assertEquals(100, Player.betRequest(jsonElement));
+		assertEquals(1000, Player.betRequest(jsonElement));
 
 	}
-    
-    @Test
-    public void testSmoke() throws IOException, URISyntaxException {
-    	String json = getTestJson();
-    	JsonElement request = new JsonParser().parse(json);
-    	int result = Player.betRequest(request);
-    }
-    
-    private String getTestJson() throws IOException, URISyntaxException {
-    	byte[] bytes = Files.readAllBytes(Paths.get(getClass().getResource("test.json").toURI()));
-    	String json = new String(bytes);
-    	return json;
-    }
+
+	@Test
+	public void testSmoke() throws IOException, URISyntaxException {
+		String json = getTestJson();
+		JsonElement request = new JsonParser().parse(json);
+		int result = Player.betRequest(request);
+	}
+
+	private String getTestJson() throws IOException, URISyntaxException {
+		byte[] bytes = Files.readAllBytes(Paths.get(getClass().getResource("test.json").toURI()));
+		String json = new String(bytes);
+		return json;
+	}
 }

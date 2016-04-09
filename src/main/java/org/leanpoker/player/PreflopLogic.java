@@ -8,31 +8,27 @@ public class PreflopLogic {
 		List<Card> holeCards = player.getHole_cards();
 		int points = 0;
 		int current = 0;
+		String previousSuit = "";
 		for (Card card : holeCards) {
-			String rank = card.getRank();
-			switch (rank) {
-			case "J":
-				current = 11;
-				break;
-			case "Q":
-				current = 12;
-				break;
-			case "K":
-				current = 13;
-				break;
-			case "A":
-				current = 14;
-				break;
-			default:
-				current = Integer.parseInt(rank);
-				break;
-			}
+			current = card.getRankInt();
+			String currentSuit = card.getSuit();
 			if (current == points) {
 				return 1000;
+			} else if (isNeighbours(points, current) || sameSuit(currentSuit, previousSuit)) {
+				return gameState.getCurrent_buy_in();
 			} else {
 				points += current;
 			}
+			previousSuit = currentSuit;
 		}
 		return points > 20 ? 1000 : 0;
+	}
+
+	private boolean sameSuit(String currentSuit, String previousSuit) {
+		return currentSuit.equals(previousSuit);
+	}
+
+	private boolean isNeighbours(int points, int current) {
+		return Math.abs(current - points) <= 1;
 	}
 }

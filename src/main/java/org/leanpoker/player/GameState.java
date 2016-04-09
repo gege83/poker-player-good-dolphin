@@ -7,6 +7,7 @@ public class GameState {
 	List<PlayerObj> players;
 	List<Card> community_cards;
 	private final int in_action;
+	private final int current_buy_in;
 
 	public int getDealer() {
 		return dealer;
@@ -36,18 +37,18 @@ public class GameState {
 		return in_action;
 	}
 
-	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards, int in_action) {
+	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards, int in_action,
+			int current_buy_in) {
 		super();
 		this.dealer = dealer;
 		this.players = players;
 		this.community_cards = community_cards;
 		this.in_action = in_action;
+		this.current_buy_in = current_buy_in;
 	}
 
-	@Override
-	public String toString() {
-		return "GameState [dealer=" + dealer + ", players=" + players + ", community_cards=" + community_cards
-				+ ", in_action=" + in_action + "]";
+	public int getCurrent_buy_in() {
+		return current_buy_in;
 	}
 
 	@Override
@@ -55,6 +56,7 @@ public class GameState {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (community_cards == null ? 0 : community_cards.hashCode());
+		result = prime * result + current_buy_in;
 		result = prime * result + dealer;
 		result = prime * result + in_action;
 		result = prime * result + (players == null ? 0 : players.hashCode());
@@ -80,6 +82,9 @@ public class GameState {
 		} else if (!community_cards.equals(other.community_cards)) {
 			return false;
 		}
+		if (current_buy_in != other.current_buy_in) {
+			return false;
+		}
 		if (dealer != other.dealer) {
 			return false;
 		}
@@ -94,6 +99,12 @@ public class GameState {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "GameState [dealer=" + dealer + ", players=" + players + ", community_cards=" + community_cards
+				+ ", in_action=" + in_action + ", current_buy_in=" + current_buy_in + "]";
 	}
 
 }
