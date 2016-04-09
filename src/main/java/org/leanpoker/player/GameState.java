@@ -8,6 +8,34 @@ public class GameState {
 	List<Card> community_cards;
 	private final int in_action;
 
+	public int getDealer() {
+		return dealer;
+	}
+
+	public void setDealer(int dealer) {
+		this.dealer = dealer;
+	}
+
+	public List<PlayerObj> getPlayers() {
+		return players;
+	}
+
+	public void setPlayers(List<PlayerObj> players) {
+		this.players = players;
+	}
+
+	public List<Card> getCommunity_cards() {
+		return community_cards;
+	}
+
+	public void setCommunity_cards(List<Card> community_cards) {
+		this.community_cards = community_cards;
+	}
+
+	public int getIn_action() {
+		return in_action;
+	}
+
 	public GameState(int dealer, List<PlayerObj> players, List<Card> community_cards, int in_action) {
 		super();
 		this.dealer = dealer;
