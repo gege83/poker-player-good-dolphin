@@ -10,6 +10,8 @@ public class Logic {
 	}
 
 	public int postFlop(GameState gameState) {
-		return 1000;
+		PlayerObj player = gameState.getPlayers().get(gameState.getIn_action());
+		AfterFlopCalculator postfolp = new AfterFlopCalculator(player.getHole_cards(), gameState.getCommunity_cards());
+		return postfolp.getGuess();
 	}
 }
