@@ -22,7 +22,9 @@ public class AfterFlopCalculator {
 
 	public int getGuess() {
 		int guess = gameState.getCurrent_buy_in();
-		if (getPairs().size() != 0 || getThreeOfAKind().size() != 0
+		if (getPairs().size() != 0
+				|| getTwoPair().size() != 0
+				|| getThreeOfAKind().size() != 0
 				|| getPoker().size() != 0) {
 			guess = 1000;
 		}
@@ -129,6 +131,10 @@ public class AfterFlopCalculator {
 				cnt++;
 				result.addAll(cardList);
 			}
+		}
+		
+		if (cnt != 2) {
+			result.clear();
 		}
 		return result;
 	}
