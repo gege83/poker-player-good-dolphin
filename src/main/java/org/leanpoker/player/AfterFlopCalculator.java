@@ -11,16 +11,18 @@ public class AfterFlopCalculator {
 	List<Card> hole;
 	List<Card> comm;
 	ArrayList<Card> cards= new ArrayList<>();
+	private GameState gameState;
 	
-	public AfterFlopCalculator(List<Card> hole, List<Card> comm) {
+	public AfterFlopCalculator(List<Card> hole, List<Card> comm, GameState gameState) {
 		this.hole=hole;
 		this.comm=comm;
+		this.gameState = gameState;
 		cards.addAll(hole);
 		cards.addAll(comm);
 	}
 	
 	public int getGuess() {
-		int guess=0;
+		int guess=gameState.getCurrent_buy_in();
 		if(getPairs().size()!=0 || getTwoPairs().size()!=0) {
 			guess=1000;
 		}
